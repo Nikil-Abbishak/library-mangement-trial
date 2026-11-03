@@ -1,0 +1,16 @@
+# Environment variables
+.env
+*.env.local
+
+# IDE & Editor
+.vscode/
+.idea/
+*.iml
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
