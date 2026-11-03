@@ -1,0 +1,12 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: library-management-system-test
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
