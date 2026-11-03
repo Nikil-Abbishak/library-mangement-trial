@@ -11,13 +11,23 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
+  /* Navbar theme variables (Light) */
+  --nav-bg: #181E2A;
+  --nav-border: #181E2A;
+  --nav-title: #ffffff;
+  --nav-link-text: #4b5563;
+  --nav-link-hover-bg: rgba(170, 59, 255, 0.1);
+  --nav-link-hover-text: #aa3bff;
+  --nav-link-active-bg: #aa3bff;
+  --nav-link-active-text: #ffffff;
+
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light dark;
+  color-scheme: light;
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
@@ -30,19 +40,29 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+/* Dark theme (activated manually via class="dark" or data-theme="dark") */
+[data-theme="dark"],
+.dark {
+  color-scheme: dark;
+  --text: #9ca3af;
+  --text-h: #f3f4f6;
+  --bg: #000000;
+  --border: #2e303a;
+  --code-bg: #1f2028;
+  --accent: #c084fc;
+  --accent-bg: rgba(192, 132, 252, 0.15);
+  --accent-border: rgba(192, 132, 252, 0.5);
+  --social-bg: rgba(47, 48, 58, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
 
+  /* Navbar theme variables (Dark) */
+  --nav-bg: #1a1a1a;
+  --nav-border: #2e303a;
+  --nav-title: #f3f4f6;
+  --nav-link-text: #9ca3af;
+  --nav-link-hover-bg: rgba(192, 132, 252, 0.15);
+  --nav-link-hover-text: #c084fc;
+  --nav-link-active-bg: #aa3bff;
+  --nav-link-active-text: #ffffff;
 }
