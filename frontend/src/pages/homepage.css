@@ -121,7 +121,7 @@
     position: absolute;
     right: 5px;
     padding: 8px 18px;
-    background: #F97300;
+    background: #2D0000;
     border-radius: 9999px;
     font-weight: 600;
     font-size: 14px;
@@ -133,7 +133,7 @@
 }
 
 .search-button:hover {
-    background-color: #ea580c;
+    background-color: #6D0808;
     box-shadow: 0 4px 10px rgba(249, 115, 0, 0.35);
     transform: translateY(-1px);
 }
