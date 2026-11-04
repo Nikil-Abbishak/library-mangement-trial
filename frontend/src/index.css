@@ -16,9 +16,9 @@
   --nav-border: #181E2A;
   --nav-title: #ffffff;
   --nav-link-text: #4b5563;
-  --nav-link-hover-bg: rgba(170, 59, 255, 0.1);
-  --nav-link-hover-text: #aa3bff;
-  --nav-link-active-bg: #aa3bff;
+  --nav-link-hover-bg: rgba(255, 98, 59, 0.185);
+  --nav-link-hover-text: #ff3b3b;
+  --nav-link-active-bg: #ff3b3b;
   --nav-link-active-text: #ffffff;
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
