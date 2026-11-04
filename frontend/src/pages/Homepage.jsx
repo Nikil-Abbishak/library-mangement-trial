@@ -4,28 +4,22 @@ import './homepage.css'
 
 export function Homepage() {
 
-    const [books, setBooks] = useState(dummyBooks);
-    const [inputText, setInputText] = useState('');
-
-
-    console.log(books.length)
+    const [allBooks, setAllBooks] = useState(dummyBooks)
+    const [inputText, setInputText] = useState('')
+    const [appliedSearch, setAppliedSearch] = useState('')
 
     function saveInputText(event) {
         setInputText(event.target.value)
     }
 
     function findBook() {
-        if (inputText) {
-            const filteredBooks = books.filter((book) => {
-                return (book.title).includes(inputText.trim())
-            })
-            setBooks(filteredBooks)
-
-            return
-        }
-
-        setBooks(dummyBooks)
+        setAppliedSearch(inputText.trim().toLowerCase())
     }
+
+    // use seperate array to filter, allBooks should not be modified
+    const displayedBooks = appliedSearch ?
+        allBooks.filter((book) => book.title.toLowerCase().includes(appliedSearch))
+        : allBooks
 
     return (
         <>
@@ -33,21 +27,28 @@ export function Homepage() {
                 <h1>Library Catalog</h1>
                 <p className="page-subtitle">Browse and explore books available in the collection</p>
             </header>
-            <div className='search-container'>
-                <input
-                    className='search-bar'
-                    placeholder='Search book title'
-                    onChange={saveInputText}
-                ></input>
-                <button
-                    className='search-button'
-                    onClick={findBook}
-                >search</button>
+
+            <div className='head-container'>
+                <div className='search-container'>
+                    <input
+                        className='search-bar'
+                        placeholder='Search book title'
+                        onChange={saveInputText}
+                        value={inputText}
+                        onKeyDown={(e) => e.key === 'Enter' && findBook()}
+                    ></input>
+                    <button
+                        className='search-button'
+                        onClick={findBook}
+                    >search</button>
+                </div>
+                <button className='sort-item'>sorts</button>
             </div>
+
             <h4>Available Titles</h4>
 
             <div className="item-container">
-                {books.map((book) => {
+                {displayedBooks.map((book) => {
                     return (
                         <div
                             className="book-card"
