@@ -29,7 +29,7 @@ const cover10 =
     "https://jwqvgftxfgkgfexaazjx.supabase.co/storage/v1/object/sign/images/book-cover-10.jpg?token=eyJraWQiOiI0Zjk2MWNmMC05M2I4LTRiMmUtYjEwOS01NWJkODBmZjBlMWEiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJpbWFnZXMvYm9vay1jb3Zlci0xMC5qcGciLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzkzNzg0NzMwLCJleHAiOjE3OTYzNzY3MzB9.jLozwXwPAAXTutqCsm_oXMiaJrJOWC1Jxm3sK4h4P0VS7wj67P_Pu5qrRhGR9f-Zp6XGwufqXrUnzmprFNFRfA";
 
 
-export const books = [
+export const dummyBooks = [
     {
         book_id: 1,
         isbn: "9780132350884",
