@@ -47,26 +47,34 @@ export function Homepage() {
 
             <h4>Available Titles</h4>
 
-            <div className="item-container">
-                {displayedBooks.map((book) => {
-                    return (
-                        <div
-                            className="book-card"
-                            key={book.book_id}
-                        >
-                            <img
-                                src={book.cover_image_url}
-                                alt="picture"
-                            />
-                            <div className="book-info">
-                                <span className="book-title">{book.title}</span>
-                                <span className="book-author">{book.author}</span>
+            {displayedBooks.length > 0 ? (
+                <div className="item-container">
+                    {displayedBooks.map((book) => {
+                        return (
+                            <div
+                                className="book-card"
+                                key={book.book_id}
+                            >
+                                <img
+                                    src={book.cover_image_url}
+                                    alt="picture"
+                                />
+                                <div className="book-info">
+                                    <span className="book-title">{book.title}</span>
+                                    <span className="book-author">{book.author}</span>
+                                </div>
                             </div>
-                        </div>
+                        )
+                    })}
+                </div>
+            ) : (
+                <div className="no-results-card">
+                    <h3>No books found</h3>
+                    <p>We couldn't find any titles matching "{inputText}". Try searching a different name.</p>
+                </div>
+            )}
 
-                    )
-                })}
-            </div>
+
         </>
     )
 }
