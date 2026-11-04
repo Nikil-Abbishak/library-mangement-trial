@@ -13,8 +13,10 @@ CREATE TABLE IF NOT EXISTS books (
     title VARCHAR(255) NOT NULL,
     author VARCHAR(255) NOT NULL,
     type_id INT NOT NULL,
-    total_copies INT NOT NULL DEFAULT 1 CHECK (total_copies >= 0),
-    available_copies INT NOT NULL DEFAULT 1 CHECK (available_copies <= total_copies),
+    status VARCHAR(20) NOT NULL DEFAULT 'Available' 
+        CHECK (status IN ('Available', 'Borrowed')),
+    language VARCHAR(20) NOT NULL DEFAULT 'English' 
+        CHECK (language IN ('Sinhala', 'Tamil', 'English')),
     cover_image_url VARCHAR(500) NULL,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
