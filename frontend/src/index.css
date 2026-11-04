@@ -1,7 +1,7 @@
 :root {
   --text: #424242;
   --text-h: #08060d;
-  --bg: #fcdabd;
+  --bg: #EEEAD7;
   --border: #e5e4e7;
   --code-bg: #f4f3ec;
   --accent: #aa3bff;
@@ -12,14 +12,14 @@
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
   /* Navbar theme variables (Light) */
-  --nav-bg: #321101;
+  --nav-bg: #6D0808;
   --nav-border: #181E2A;
   --nav-title: #ffffff;
-  --nav-link-text: #F97300;
-  --nav-link-hover-bg: #524C42;
+  --nav-link-text: #E2DFD0;
+  --nav-link-hover-bg: #757D6F;
   --nav-link-hover-text: #ffffff;
-  --nav-link-active-bg: #F97300;
-  --nav-link-active-text: #E2DFD0;
+  --nav-link-active-bg: #2D0000;
+  --nav-link-active-text: #ffffff;
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
@@ -44,7 +44,7 @@
 [data-theme="dark"],
 .dark {
   color-scheme: dark;
-  --text: #9ca3af;
+  --text: #8b8a8a;
   --text-h: #f3f4f6;
   --bg: #000000;
   --border: #2e303a;

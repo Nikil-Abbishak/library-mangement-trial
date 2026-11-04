@@ -15,14 +15,49 @@
 
 .nav-header {
   margin-bottom: 24px;
-  padding: 0 20px;
+  padding: 0 16px;
 }
 
-.nav-header h2 {
+.nav-header a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.nav-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 4px;
+  user-select: none;
+}
+
+.nav-header-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  color: #ffffff;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: transform 0.25s ease;
+}
+
+.nav-header-brand:hover .nav-header-icon {
+  transform: rotate(-4deg) scale(1.08);
+}
+
+.nav-header h1 {
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--nav-title, #111827);
+  color: var(--nav-title, #ffffff);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  transition: letter-spacing 0.25s ease, text-shadow 0.25s ease;
+}
+
+.nav-header-brand:hover h1 {
+  letter-spacing: 2.5px;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.4), 0 2px 6px rgba(0, 0, 0, 0.35);
 }
 
 .nav-links {
