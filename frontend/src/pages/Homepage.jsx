@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { fetchAllBooks } from '../services/bookService'
 import { InputText } from '../components/homepage/InputText'
 import { BookComponent } from '../components/homepage/BookComponent'
+import { LoadingSpinner } from '../components/common/LoadingSpinner'
 import './homepage.css'
 
 export function Homepage() {
@@ -12,16 +13,20 @@ export function Homepage() {
     const [inputText, setInputText] = useState('')
     // save searching keyword
     const [appliedSearch, setAppliedSearch] = useState('')
+    // loading state
+    const [isLoading, setIsLoading] = useState(true)
 
     // Fetch all books at initial render
     useEffect(() => {
         async function loadAllbooks() {
             try {
+                setIsLoading(true)
                 const data = await fetchAllBooks()
                 setAllBooks(data)
-                console.log(allBooks)
             } catch (err) {
-                console.log(err)
+                console.error(err)
+            } finally {
+                setIsLoading(false)
             }
         }
 
@@ -29,7 +34,7 @@ export function Homepage() {
     }, [])
 
     return (
-        <>
+        <div className="homepage-container">
             <header className="page-header">
                 <h1>Library Catalog</h1>
                 <p className="page-subtitle">Browse and explore books available in the collection</p>
@@ -42,13 +47,18 @@ export function Homepage() {
                 setAppliedSearch={setAppliedSearch}
             />
 
-            {/* Component to display books */}
-            <BookComponent
-                inputText={inputText}
-                allBooks={allBooks}
-                appliedSearch={appliedSearch}
-            />
-
-        </>
+            {/* Centered Loading Spinner or Content */}
+            {isLoading ? (
+                <div className="homepage-loading-area">
+                    <LoadingSpinner message="Loading library catalog..." size="lg" />
+                </div>
+            ) : (
+                <BookComponent
+                    inputText={inputText}
+                    allBooks={allBooks}
+                    appliedSearch={appliedSearch}
+                />
+            )}
+        </div>
     )
 }
