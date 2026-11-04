@@ -34,3 +34,7 @@ out/
 .env
 *.log
 
+### Markdown files ###
+API_DOCUMENTATION.md
+*.md
+!README.md
