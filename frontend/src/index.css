@@ -1,7 +1,7 @@
 :root {
-  --text: #6b6375;
+  --text: #424242;
   --text-h: #08060d;
-  --bg: #fff;
+  --bg: #fcdabd;
   --border: #e5e4e7;
   --code-bg: #f4f3ec;
   --accent: #aa3bff;
@@ -12,14 +12,14 @@
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
   /* Navbar theme variables (Light) */
-  --nav-bg: #181E2A;
+  --nav-bg: #321101;
   --nav-border: #181E2A;
   --nav-title: #ffffff;
-  --nav-link-text: #4b5563;
-  --nav-link-hover-bg: rgba(255, 98, 59, 0.185);
-  --nav-link-hover-text: #ff3b3b;
-  --nav-link-active-bg: #ff3b3b;
-  --nav-link-active-text: #ffffff;
+  --nav-link-text: #F97300;
+  --nav-link-hover-bg: #524C42;
+  --nav-link-hover-text: #ffffff;
+  --nav-link-active-bg: #F97300;
+  --nav-link-active-text: #E2DFD0;
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
