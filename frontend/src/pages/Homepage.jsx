@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { dummyBooks } from '../data/dummy-books'
+import { fetchAllBooks } from '../services/bookService'
 import './homepage.css'
 
 export function Homepage() {
@@ -7,6 +8,20 @@ export function Homepage() {
     const [allBooks, setAllBooks] = useState(dummyBooks)
     const [inputText, setInputText] = useState('')
     const [appliedSearch, setAppliedSearch] = useState('')
+
+    useEffect(() => {
+        async function loadAllbooks() {
+            try {
+                const data = await fetchAllBooks()
+                setAllBooks(data)
+                console.log(allBooks)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+        loadAllbooks()
+    }, [])
 
     function saveInputText(event) {
         setInputText(event.target.value)
@@ -42,7 +57,7 @@ export function Homepage() {
                         onClick={findBook}
                     >search</button>
                 </div>
-                <button className='sort-item'>sorts</button>
+                <button className='sort-item'>sort</button>
             </div>
 
             <h4>Available Titles</h4>
