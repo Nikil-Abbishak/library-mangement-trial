@@ -1,20 +1,13 @@
 import './bookComponent.css'
 
-export function BookComponent({ inputText, allBooks, appliedSearch }) {
-
-    // use seperate array to filter, allBooks should not be modified
-    const displayedBooks = appliedSearch ?
-        allBooks.filter((book) => book.title.toLowerCase().includes(appliedSearch))
-        : allBooks
-
+export function BookComponent({ books, appliedSearch, filterBy }) {
     return (
         <>
             <h4>Available Titles</h4>
 
-            {/* Checks the length size and display error message if not found */}
-            {displayedBooks.length > 0 ? (
+            {books && books.length > 0 ? (
                 <div className="item-container">
-                    {displayedBooks.map((book) => {
+                    {books.map((book) => {
                         return (
                             <div
                                 className="book-card"
@@ -22,7 +15,7 @@ export function BookComponent({ inputText, allBooks, appliedSearch }) {
                             >
                                 <img
                                     src={book.cover_image_url}
-                                    alt="picture"
+                                    alt={book.title || 'Book cover'}
                                 />
                                 <div className="book-info">
                                     <span className="book-title">{book.title}</span>
@@ -35,7 +28,15 @@ export function BookComponent({ inputText, allBooks, appliedSearch }) {
             ) : (
                 <div className="no-results-card">
                     <h3>No books found</h3>
-                    <p>We couldn't find any titles matching "{inputText}". Try searching a different name.</p>
+                    <p>
+                        {appliedSearch && filterBy
+                            ? `We couldn't find any "${filterBy}" titles matching "${appliedSearch}".`
+                            : appliedSearch
+                            ? `We couldn't find any titles matching "${appliedSearch}". Try searching a different name.`
+                            : filterBy
+                            ? `No books found for language "${filterBy}".`
+                            : `There are currently no books available in the collection.`}
+                    </p>
                 </div>
             )}
         </>

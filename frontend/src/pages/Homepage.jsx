@@ -1,37 +1,51 @@
 import { useEffect, useState } from 'react'
-// import { dummyBooks } from '../data/dummy-books'
-import { fetchAllBooks } from '../services/bookService'
+import { filterBooks } from '../services/bookService'
 import { InputText } from '../components/homepage/InputText'
 import { BookComponent } from '../components/homepage/BookComponent'
 import { LoadingSpinner } from '../components/loading/LoadingSpinner'
 import './homepage.css'
 
 export function Homepage() {
-    // save all books
-    const [allBooks, setAllBooks] = useState([])
-    // save input text from search input
+    // Books list fetched from server
+    const [books, setBooks] = useState([])
+    // Search input text state
     const [inputText, setInputText] = useState('')
-    // save searching keyword
+    // Applied search keyword sent to server
     const [appliedSearch, setAppliedSearch] = useState('')
-    // loading state
+    // Loading state
     const [isLoading, setIsLoading] = useState(true)
+    // Filter books by language
+    const [filterBy, setFilterBy] = useState('')
 
-    // Fetch all books at initial render
+    // Centralized server-side fetch: runs on mount and whenever search or filter changes
     useEffect(() => {
-        async function loadAllbooks() {
+        let isMounted = true
+
+        async function loadBooks() {
             try {
                 setIsLoading(true)
-                const data = await fetchAllBooks()
-                setAllBooks(data)
+                const data = await filterBooks({
+                    search: appliedSearch,
+                    language: filterBy
+                })
+                if (isMounted) {
+                    setBooks(data)
+                }
             } catch (err) {
-                console.error(err)
+                console.error('Failed to load books:', err)
             } finally {
-                setIsLoading(false)
+                if (isMounted) {
+                    setIsLoading(false)
+                }
             }
         }
 
-        loadAllbooks()
-    }, [])
+        loadBooks()
+
+        return () => {
+            isMounted = false
+        }
+    }, [appliedSearch, filterBy])
 
     return (
         <div className="homepage-container">
@@ -45,6 +59,8 @@ export function Homepage() {
                 inputText={inputText}
                 setInputText={setInputText}
                 setAppliedSearch={setAppliedSearch}
+                filterBy={filterBy}
+                setFilterBy={setFilterBy}
             />
 
             {/* Centered Loading Spinner or Content */}
@@ -54,9 +70,9 @@ export function Homepage() {
                 </div>
             ) : (
                 <BookComponent
-                    inputText={inputText}
-                    allBooks={allBooks}
+                    books={books}
                     appliedSearch={appliedSearch}
+                    filterBy={filterBy}
                 />
             )}
         </div>
