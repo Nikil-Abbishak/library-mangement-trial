@@ -1,0 +1,31 @@
+.homepage-container {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 64px);
+    width: 100%;
+}
+
+.homepage-loading-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-height: 400px;
+    width: 100%;
+}
+
+.page-header {
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.page-header h1 {
+    color: #000000;
+    margin-bottom: 6px;
+}
+
+.page-subtitle {
+    margin: 0;
+    color: #000000;
+    font-size: 1rem;
+}
