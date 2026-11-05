@@ -81,14 +81,7 @@
     border: 1px solid #dadce0;
     border-radius: 8px;
     color: #5f6368;
-    cursor: pointer;
     transition: background-color 0.15s ease, border-color 0.15s ease;
-}
-
-.btn-filter:hover {
-    background-color: #f8f9fa;
-    border-color: #bdc1c6;
-    color: #202124;
 }
 
 .select-wrapper {

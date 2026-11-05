@@ -17,19 +17,16 @@ export function FilterComponent() {
                     className="search-input"
                 />
             </div>
-            <button className="btn-filter" aria-label="Filter">
+            <div className="btn-filter" aria-label="Filter">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
                 </svg>
-            </button>
-            <div className="select-wrapper">
-                <select className="select-dropdown" defaultValue="all">
-                    <option value="all">Genre: All</option>
-                </select>
             </div>
             <div className="select-wrapper">
                 <select className="select-dropdown" defaultValue="all">
-                    <option value="all">Status: All</option>
+                    <option value="all">All</option>
+                    <option value="available">Available</option>
+                    <option value="borrowed">Borrowed</option>
                 </select>
             </div>
         </div>
