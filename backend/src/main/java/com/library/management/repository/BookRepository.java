@@ -9,13 +9,6 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
-    // Filter books by status ("Available" or "Borrowed")
+    // Status filter helper for dashboard counts
     List<Book> findByStatus(String status);
-
-    // Filter books by language ("Sinhala", "Tamil", or "English")
-    List<Book> findByLanguage(String language);
-
-    // Search books by title or author
-    List<Book> findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCase(String title, String author);
 }
-
