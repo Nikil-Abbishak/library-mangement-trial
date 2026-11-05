@@ -40,6 +40,7 @@ export async function filterBooks({ search, status, language } = {}) {
 
 }
 
+// create new book with POST method
 export async function addNewBook(data) {
     const response = await fetch(`${API_BASE_URL}/api/books`,
         {
@@ -56,6 +57,16 @@ export async function addNewBook(data) {
             throw new Error('A book with this ISBN already exists or the data is invalid.')
         }
         throw new Error(`Failed to post: ${response.statusText}`)
+    }
+
+    return response.json()
+}
+
+export async function getStats() {
+    const response = await fetch(`${API_BASE_URL}/api/books/stats`)
+
+    if (!response.ok) {
+        throw new Error('Failed to fetch : ', response.statusText)
     }
 
     return response.json()

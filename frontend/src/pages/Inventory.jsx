@@ -1,10 +1,26 @@
+import { useEffect, useState } from 'react'
 import { AddBook } from '../components/inventory/AddBook'
 import { FilterComponent } from '../components/inventory/FilterComponent'
 import { InventoryTable } from '../components/inventory/InventoryTable'
 import { StatCards } from '../components/inventory/StatCards'
 import './inventory.css'
+import { fetchAllBooks } from '../services/bookService'
 
 export function Inventory() {
+    const [books, setBooks] = useState([])
+
+    useEffect(() => {
+        async function loadBooks() {
+
+            const data = await fetchAllBooks();
+
+            setBooks(data)
+            console.log(data)
+        }
+
+        loadBooks()
+    }, [])
+
     return (
         <>
             <header className="page-header">
@@ -15,7 +31,7 @@ export function Inventory() {
             <StatCards />
             <FilterComponent />
             <AddBook />
-            <InventoryTable />
+            <InventoryTable books={books} />
 
         </>
     )

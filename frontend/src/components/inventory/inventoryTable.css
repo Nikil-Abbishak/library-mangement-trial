@@ -28,6 +28,42 @@
     border-bottom: 1px solid #edf2f7;
     font-size: 0.92rem;
     color: #2d3748;
+    vertical-align: middle;
+}
+
+/* Cover Image Styling */
+.th-cover {
+    width: 60px;
+    text-align: center;
+}
+
+.td-cover {
+    width: 60px;
+    text-align: center;
+    padding: 8px 12px;
+}
+
+.book-cover-img {
+    width: 42px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    display: block;
+    margin: 0 auto;
+}
+
+.book-cover-placeholder {
+    width: 42px;
+    height: 56px;
+    border-radius: 4px;
+    background-color: #f1f5f9;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #cbd5e1;
+    margin: 0 auto;
 }
 
 .inventory-table tbody tr:hover {
