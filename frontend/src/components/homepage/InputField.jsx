@@ -1,6 +1,6 @@
-import './inputText.css'
+import './inputField.css'
 
-export function InputText({ inputText, setInputText, setAppliedSearch, filterBy, setFilterBy }) {
+export function InputField({ inputText, setInputText, setAppliedSearch, filterBy, setFilterBy }) {
 
     function saveInputText(event) {
         setInputText(event.target.value)
@@ -33,8 +33,10 @@ export function InputText({ inputText, setInputText, setAppliedSearch, filterBy,
                 </button>
             </div>
 
-            <div className='sort-item'>
-                filter By
+            <div className="sort-item" aria-label="Filter">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                </svg>
             </div>
             <select
                 className='sort-item dropdown'
