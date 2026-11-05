@@ -1,22 +1,17 @@
-import { useState } from 'react'
 import './inputText.css'
 
-export function InputText({ inputText, setInputText, setAppliedSearch }) {
-
-    const [sortBy, setSortBy] = useState('title')
+export function InputText({ inputText, setInputText, setAppliedSearch, filterBy, setFilterBy }) {
 
     function saveInputText(event) {
         setInputText(event.target.value)
     }
 
     function searchBook() {
-        setAppliedSearch(inputText.trim().toLowerCase())
-        console.log(sortBy)
+        setAppliedSearch(inputText.trim())
     }
 
-    function selectSorting(event) {
-        setSortBy(event.target.value)
-        console.log(sortBy)
+    function selectFiltering(event) {
+        setFilterBy(event.target.value)
     }
 
     return (
@@ -24,7 +19,7 @@ export function InputText({ inputText, setInputText, setAppliedSearch }) {
             <div className='search-container'>
                 <input
                     className='search-bar'
-                    placeholder='Search book title'
+                    placeholder='Search book title or author'
                     onChange={saveInputText}
                     value={inputText}
                     onKeyDown={(e) => e.key === 'Enter' && searchBook()}
@@ -33,20 +28,24 @@ export function InputText({ inputText, setInputText, setAppliedSearch }) {
                 <button
                     className='search-button'
                     onClick={searchBook}
-                >search</button>
+                >
+                    search
+                </button>
             </div>
+
             <div className='sort-item'>
-                Sort by
+                filter By
             </div>
             <select
                 className='sort-item dropdown'
-                value={sortBy}
-                onChange={selectSorting}
+                value={filterBy}
+                onChange={selectFiltering}
             >
-                <option value="title">Title</option>
-                <option value="language">Language</option>
+                <option value="">-- select --</option>
+                <option value="English">English</option>
+                <option value="Sinhala">Sinhala</option>
+                <option value="Tamil">Tamil</option>
             </select>
-
         </div>
     )
 }
