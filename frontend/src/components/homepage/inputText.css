@@ -56,6 +56,8 @@
 }
 
 .sort-item {
+    display: flex;
+    align-items: center;
     height: 44px;
     padding: 0 20px;
     border-radius: 9999px;
@@ -68,26 +70,7 @@
     transition: all 0.2s ease;
 }
 
-.sort-item:hover {
-    border-color: #F97300;
-    color: #F97300;
-}
-
-
-.sort-item {
-    height: 44px;
-    padding: 0 20px;
-    border-radius: 9999px;
-    border: 1.5px solid #e2e8f0;
-    background: #ffffff;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.2s ease;
-}
-
-.sort-item:hover {
+.dropdown:hover {
     border-color: #F97300;
     color: #F97300;
 }

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { fetchAllBooks } from '../services/bookService'
 import { InputText } from '../components/homepage/InputText'
 import { BookComponent } from '../components/homepage/BookComponent'
-import { LoadingSpinner } from '../components/common/LoadingSpinner'
+import { LoadingSpinner } from '../components/loading/LoadingSpinner'
 import './homepage.css'
 
 export function Homepage() {
