@@ -1,3 +1,4 @@
+import { AddBook } from '../components/inventory/AddBook'
 import { FilterComponent } from '../components/inventory/FilterComponent'
 import { InventoryTable } from '../components/inventory/InventoryTable'
 import { StatCards } from '../components/inventory/StatCards'
@@ -13,7 +14,7 @@ export function Inventory() {
 
             <StatCards />
             <FilterComponent />
-
+            <AddBook />
             <InventoryTable />
 
         </>

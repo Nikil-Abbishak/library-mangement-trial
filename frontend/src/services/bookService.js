@@ -39,3 +39,24 @@ export async function filterBooks({ search, status, language } = {}) {
 
 
 }
+
+export async function addNewBook(data) {
+    const response = await fetch(`${API_BASE_URL}/api/books`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    )
+
+    if (!response.ok) {
+        if (response.status === 500 || response.status === 409) {
+            throw new Error('A book with this ISBN already exists or the data is invalid.')
+        }
+        throw new Error(`Failed to post: ${response.statusText}`)
+    }
+
+    return response.json()
+}
