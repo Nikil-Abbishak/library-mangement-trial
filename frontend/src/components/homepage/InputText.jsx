@@ -11,10 +11,12 @@ export function InputText({ inputText, setInputText, setAppliedSearch }) {
 
     function searchBook() {
         setAppliedSearch(inputText.trim().toLowerCase())
+        console.log(sortBy)
     }
 
     function selectSorting(event) {
         setSortBy(event.target.value)
+        console.log(sortBy)
     }
 
     return (

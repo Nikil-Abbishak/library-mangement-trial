@@ -54,7 +54,6 @@ export function Homepage() {
                 </div>
             ) : (
                 <BookComponent
-                    inputText={inputText}
                     allBooks={allBooks}
                     appliedSearch={appliedSearch}
                 />

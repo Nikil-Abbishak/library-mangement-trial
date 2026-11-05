@@ -1,6 +1,6 @@
 import './bookComponent.css'
 
-export function BookComponent({ inputText, allBooks, appliedSearch }) {
+export function BookComponent({ allBooks, appliedSearch }) {
 
     // use seperate array to filter, allBooks should not be modified
     const displayedBooks = appliedSearch ?
@@ -35,7 +35,7 @@ export function BookComponent({ inputText, allBooks, appliedSearch }) {
             ) : (
                 <div className="no-results-card">
                     <h3>No books found</h3>
-                    <p>We couldn't find any titles matching "{inputText}". Try searching a different name.</p>
+                    <p>We couldn't find any titles matching "{appliedSearch}". Try searching a different name.</p>
                 </div>
             )}
         </>
