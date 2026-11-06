@@ -7,7 +7,7 @@ export async function fetchAllBooks() {
         throw new Error(`Failed to fetch books: ${response.statusText}`)
     }
 
-    return response.json()
+    return await response.json()
 }
 
 // = {} uses as a fallback default value of an empty object in case no argument is passed at all
@@ -35,7 +35,7 @@ export async function filterBooks({ search, status, language } = {}) {
         throw new Error(`Failed to fetch books: ${response.statusText}`)
     }
 
-    return response.json()
+    return await response.json()
 
 
 }
@@ -59,7 +59,7 @@ export async function addNewBook(data) {
         throw new Error(`Failed to post: ${response.statusText}`)
     }
 
-    return response.json()
+    return await response.json()
 }
 
 export async function getStats() {
@@ -69,5 +69,5 @@ export async function getStats() {
         throw new Error('Failed to fetch : ', response.statusText)
     }
 
-    return response.json()
+    return await response.json()
 }
