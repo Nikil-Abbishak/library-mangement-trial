@@ -4,6 +4,7 @@ import com.library.management.model.Book;
 import com.library.management.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,18 +16,33 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    // Get all books, or filter if query parameters are provided
+    // Get all books with simultaneous search and filtering
     public List<Book> getAllBooks(String search, String status, String language) {
-        if (search != null && !search.trim().isEmpty()) {
-            return bookRepository.findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCase(search, search);
+        List<Book> allBooks = bookRepository.findAll();
+        List<Book> filteredBooks = new ArrayList<>();
+
+        for (Book book : allBooks) {
+            // 1. Search keyword in title, author, or ISBN
+            boolean matchesSearch = (search == null || search.trim().isEmpty())
+                || (book.getTitle() != null && book.getTitle().toLowerCase().contains(search.toLowerCase().trim()))
+                || (book.getAuthor() != null && book.getAuthor().toLowerCase().contains(search.toLowerCase().trim()))
+                || (book.getIsbn() != null && book.getIsbn().toLowerCase().contains(search.toLowerCase().trim()));
+
+            // 2. Language filter
+            boolean matchesLanguage = (language == null || language.trim().isEmpty())
+                || (book.getLanguage() != null && book.getLanguage().equalsIgnoreCase(language.trim()));
+
+            // 3. Status filter
+            boolean matchesStatus = (status == null || status.trim().isEmpty())
+                || (book.getStatus() != null && book.getStatus().equalsIgnoreCase(status.trim()));
+
+            // Must match all active filters simultaneously
+            if (matchesSearch && matchesLanguage && matchesStatus) {
+                filteredBooks.add(book);
+            }
         }
-        if (status != null && !status.trim().isEmpty()) {
-            return bookRepository.findByStatus(status);
-        }
-        if (language != null && !language.trim().isEmpty()) {
-            return bookRepository.findByLanguage(language);
-        }
-        return bookRepository.findAll();
+
+        return filteredBooks;
     }
 
     // Save a new book to the database
@@ -61,4 +77,3 @@ public class BookService {
         return bookRepository.findByStatus("Borrowed").size();
     }
 }
-

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { filterBooks } from '../services/bookService'
-import { InputText } from '../components/homepage/InputText'
+import { InputField } from '../components/homepage/InputField'
 import { BookComponent } from '../components/homepage/BookComponent'
 import { LoadingSpinner } from '../components/loading/LoadingSpinner'
 import './homepage.css'
@@ -55,7 +55,7 @@ export function Homepage() {
             </header>
 
             {/* Search bar and sorting */}
-            <InputText
+            <InputField
                 inputText={inputText}
                 setInputText={setInputText}
                 setAppliedSearch={setAppliedSearch}

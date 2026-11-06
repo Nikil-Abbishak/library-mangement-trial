@@ -1,6 +1,26 @@
+import { useEffect, useState } from 'react'
+import { AddBook } from '../components/inventory/AddBook'
+import { FilterComponent } from '../components/inventory/FilterComponent'
+import { InventoryTable } from '../components/inventory/InventoryTable'
+import { StatCards } from '../components/inventory/StatCards'
 import './inventory.css'
+import { fetchAllBooks } from '../services/bookService'
 
 export function Inventory() {
+    const [books, setBooks] = useState([])
+
+    useEffect(() => {
+        async function loadBooks() {
+
+            const data = await fetchAllBooks();
+
+            setBooks(data)
+            console.log(data)
+        }
+
+        loadBooks()
+    }, [])
+
     return (
         <>
             <header className="page-header">
@@ -8,77 +28,11 @@ export function Inventory() {
                 <p className="page-subtitle">Add, edit, track stock, and organize books across the library collection.</p>
             </header>
 
-            <div className="stats-grid">
-                <div className="stat-card">
-                    <span className="stat-title">Total Books</span>
-                    <span className="stat-value">1,248</span>
-                </div>
+            <StatCards />
+            <FilterComponent />
+            <AddBook />
+            <InventoryTable books={books} />
 
-                <div className="stat-card">
-                    <span className="stat-title">Available Books</span>
-                    <span className="stat-value">982</span>
-                </div>
-            </div>
-
-            <div className="table-container">
-                <table className="inventory-table">
-                    <thead>
-                        <tr>
-                            <th>Book Title</th>
-                            <th>Author</th>
-                            <th>ISBN</th>
-                            <th>Status</th>
-                            <th>Language</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Clean Code</td>
-                            <td>Robert C. Martin</td>
-                            <td>9780132350884</td>
-                            <td><span className="badge badge-available">Available</span></td>
-                            <td>English</td>
-                        </tr>
-                        <tr>
-                            <td>Designing Data-Intensive Applications</td>
-                            <td>Martin Kleppmann</td>
-                            <td>9781491950357</td>
-                            <td><span className="badge badge-available">Available</span></td>
-                            <td>English</td>
-                        </tr>
-                        <tr>
-                            <td>You Don't Know JS: Scope & Closures</td>
-                            <td>Kyle Simpson</td>
-                            <td>9781449335588</td>
-                            <td><span className="badge badge-borrowed">Borrowed</span></td>
-                            <td>English</td>
-                        </tr>
-                        <tr>
-                            <td>The Pragmatic Programmer</td>
-                            <td>Andrew Hunt, David Thomas</td>
-                            <td>9780135957059</td>
-                            <td><span className="badge badge-available">Available</span></td>
-                            <td>English</td>
-                        </tr>
-                        <tr>
-                            <td>Refactoring</td>
-                            <td>Martin Fowler</td>
-                            <td>9780134757599</td>
-                            <td><span className="badge badge-reserved">Reserved</span></td>
-                            <td>English</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                {/* Pagination Controls */}
-                <div className="pagination">
-                    <span className="pagination-info">Showing 1 to 5 of 1,248 entries</span>
-                    <div className="pagination-controls">
-                        <button className="pagination-btn" disabled>&larr; Previous</button>
-                        <button className="pagination-btn">Next &rarr;</button>
-                    </div>
-                </div>
-            </div>
         </>
     )
 }
