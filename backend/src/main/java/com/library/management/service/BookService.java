@@ -16,7 +16,7 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    // Get all books with simultaneous search and filtering
+    // Get all books with simultaneous search and filtering (pure Java logic)
     public List<Book> getAllBooks(String search, String status, String language) {
         List<Book> allBooks = bookRepository.findAll();
         List<Book> filteredBooks = new ArrayList<>();
@@ -52,16 +52,10 @@ public class BookService {
 
     // Update existing book details
     public Book updateBook(Integer id, Book updatedBook) {
-        return bookRepository.findById(id).map(existingBook -> {
-            existingBook.setIsbn(updatedBook.getIsbn());
-            existingBook.setTitle(updatedBook.getTitle());
-            existingBook.setAuthor(updatedBook.getAuthor());
-            existingBook.setTypeId(updatedBook.getTypeId());
-            existingBook.setStatus(updatedBook.getStatus());
-            existingBook.setLanguage(updatedBook.getLanguage());
-            existingBook.setCoverImageUrl(updatedBook.getCoverImageUrl());
-            return bookRepository.save(existingBook);
-        }).orElse(null);
+        if (!bookRepository.existsById(id)) {
+            return null;
+        }
+        return bookRepository.update(id, updatedBook);
     }
 
     // Metrics for dashboard cards
@@ -70,10 +64,10 @@ public class BookService {
     }
 
     public long getAvailableCount() {
-        return bookRepository.findByStatus("Available").size();
+        return bookRepository.countByStatus("Available");
     }
 
     public long getBorrowedCount() {
-        return bookRepository.findByStatus("Borrowed").size();
+        return bookRepository.countByStatus("Borrowed");
     }
 }
