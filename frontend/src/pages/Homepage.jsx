@@ -29,7 +29,7 @@ export function Homepage() {
                     language: filterBy
                 })
                 if (isMounted) {
-                    setBooks(data)
+                    setBooks(data.data)
                 }
             } catch (err) {
                 console.error('Failed to load books:', err)
