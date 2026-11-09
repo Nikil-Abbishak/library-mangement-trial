@@ -1,10 +1,10 @@
 package com.library.management.service;
 
+import com.library.management.dto.PagedResponse;
 import com.library.management.model.Book;
 import com.library.management.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,33 +16,19 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    // Get all books with simultaneous search and filtering (pure Java logic)
-    public List<Book> getAllBooks(String search, String status, String language) {
-        List<Book> allBooks = bookRepository.findAll();
-        List<Book> filteredBooks = new ArrayList<>();
-
-        for (Book book : allBooks) {
-            // 1. Search keyword in title, author, or ISBN
-            boolean matchesSearch = (search == null || search.trim().isEmpty())
-                || (book.getTitle() != null && book.getTitle().toLowerCase().contains(search.toLowerCase().trim()))
-                || (book.getAuthor() != null && book.getAuthor().toLowerCase().contains(search.toLowerCase().trim()))
-                || (book.getIsbn() != null && book.getIsbn().toLowerCase().contains(search.toLowerCase().trim()));
-
-            // 2. Language filter
-            boolean matchesLanguage = (language == null || language.trim().isEmpty())
-                || (book.getLanguage() != null && book.getLanguage().equalsIgnoreCase(language.trim()));
-
-            // 3. Status filter
-            boolean matchesStatus = (status == null || status.trim().isEmpty())
-                || (book.getStatus() != null && book.getStatus().equalsIgnoreCase(status.trim()));
-
-            // Must match all active filters simultaneously
-            if (matchesSearch && matchesLanguage && matchesStatus) {
-                filteredBooks.add(book);
-            }
+    // Get one page after applying all filters in the database.
+    public PagedResponse<Book> getBooks(String search, String status, String language, Integer typeId,
+            int page, int limit) {
+        if (page < 1 || limit < 1) {
+            throw new IllegalArgumentException("page and limit must both be greater than zero");
         }
 
-        return filteredBooks;
+        long offset = (long) (page - 1) * limit;
+        long total = bookRepository.count(search, status, language, typeId);
+        List<Book> books = bookRepository.findPage(search, status, language, typeId, limit, offset);
+        long totalPages = total == 0 ? 0 : (total + limit - 1) / limit;
+
+        return new PagedResponse<>(books, page, limit, total, totalPages);
     }
 
     // Save a new book to the database

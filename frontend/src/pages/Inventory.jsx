@@ -14,7 +14,7 @@ export function Inventory() {
 
             const data = await fetchAllBooks();
 
-            setBooks(data)
+            setBooks(data.data)
             console.log(data)
         }
 
