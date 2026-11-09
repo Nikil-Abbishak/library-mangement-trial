@@ -11,14 +11,17 @@ export async function fetchAllBooks() {
 }
 
 // = {} uses as a fallback default value of an empty object in case no argument is passed at all
-export async function filterBooks({ search, status, language } = {}) {
+export async function filterBooks({ search, status, language, page, limit } = {}) {
 
     //building URLs with query parameters
     const params = new URLSearchParams();
 
-    if (search) { params.append('search', search) }
-    if (status) { params.append('status', status) }
-    if (language) { params.append('language', language) }
+    if (search) params.append('search', search)
+    if (status) params.append('status', status)
+    if (language) params.append('language', language)
+    if (page) params.append('page', page)
+    if (limit) params.append('limit', limit)
+
 
     const queryString = params.toString()
 
@@ -27,7 +30,7 @@ export async function filterBooks({ search, status, language } = {}) {
     // check for queryString has passed or not
     const url = queryString ? `${API_BASE_URL}/api/books?${queryString}` : `${API_BASE_URL}/api/books`
 
-    // console.log(url)
+    console.log(url)
 
     const response = await fetch(url)
 
@@ -36,8 +39,6 @@ export async function filterBooks({ search, status, language } = {}) {
     }
 
     return await response.json()
-
-
 }
 
 // create new book with POST method
@@ -71,5 +72,3 @@ export async function getStats() {
 
     return await response.json()
 }
-
-//

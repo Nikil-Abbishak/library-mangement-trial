@@ -12,12 +12,12 @@ export function Homepage() {
     const [inputText, setInputText] = useState('')
     // Applied search keyword sent to server
     const [appliedSearch, setAppliedSearch] = useState('')
-    // Loading state
-    const [isLoading, setIsLoading] = useState(true)
     // Filter books by language
     const [filterBy, setFilterBy] = useState('')
+    // Loading state
+    const [isLoading, setIsLoading] = useState(true)
 
-    // Centralized server-side fetch: runs on mount and whenever search or filter changes
+    //runs on mount and whenever search or filter changes
     useEffect(() => {
         let isMounted = true
 
@@ -26,7 +26,8 @@ export function Homepage() {
                 setIsLoading(true)
                 const data = await filterBooks({
                     search: appliedSearch,
-                    language: filterBy
+                    language: filterBy,
+                    limit: 5
                 })
                 if (isMounted) {
                     setBooks(data.data)
@@ -51,7 +52,9 @@ export function Homepage() {
         <div className="homepage-container">
             <header className="page-header">
                 <h1>Library Catalog</h1>
-                <p className="page-subtitle">Browse and explore books available in the collection</p>
+                <p className="page-subtitle">
+                    Browse and explore books available in the collection
+                </p>
             </header>
 
             {/* Search bar and sorting */}
