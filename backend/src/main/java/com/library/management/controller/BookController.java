@@ -1,7 +1,6 @@
 package com.library.management.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
@@ -15,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
+import com.library.management.dto.PagedResponse;
 import com.library.management.model.Book;
 import com.library.management.service.BookService;
 
@@ -30,13 +31,20 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    // GET /api/books - Get books with optional search/filtering
+    // GET /api/books - Get a page of books with optional search/filtering
     @GetMapping
-    public List<Book> getBooks(
+    public PagedResponse<Book> getBooks(
             @RequestParam(required = false) String search,
             @RequestParam(required = false) String status,
-            @RequestParam(required = false) String language) {
-        return bookService.getAllBooks(search, status, language);
+            @RequestParam(required = false) String language,
+            @RequestParam(name = "type_id", required = false) Integer typeId,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int limit) {
+        if (page < 1 || limit < 1) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "page and limit must both be greater than zero");
+        }
+        return bookService.getBooks(search, status, language, typeId, page, limit);
     }
 
     // GET /api/books/stats - Dashboard metrics

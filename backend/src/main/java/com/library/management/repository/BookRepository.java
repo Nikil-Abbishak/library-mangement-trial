@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -30,10 +31,24 @@ public class BookRepository {
         return book;
     };
 
-    // Get all books from the database
-    public List<Book> findAll() {
-        String sql = "SELECT * FROM books";
-        return jdbcTemplate.query(sql, bookRowMapper);
+    // Get one ordered page of books matching the active filters.
+    public List<Book> findPage(String search, String status, String language, Integer typeId,
+            int limit, long offset) {
+        QueryParts queryParts = buildFilterQuery(search, status, language, typeId);
+        String sql = "SELECT * FROM books" + queryParts.whereClause
+                + " ORDER BY book_id ASC LIMIT ? OFFSET ?";
+        List<Object> parameters = new ArrayList<>(queryParts.parameters);
+        parameters.add(limit);
+        parameters.add(offset);
+        return jdbcTemplate.query(sql, bookRowMapper, parameters.toArray());
+    }
+
+    // Count books matching the active filters.
+    public long count(String search, String status, String language, Integer typeId) {
+        QueryParts queryParts = buildFilterQuery(search, status, language, typeId);
+        String sql = "SELECT COUNT(*) FROM books" + queryParts.whereClause;
+        Long result = jdbcTemplate.queryForObject(sql, Long.class, queryParts.parameters.toArray());
+        return result != null ? result : 0;
     }
 
     // Get a single book by ID
@@ -95,5 +110,36 @@ public class BookRepository {
         String sql = "SELECT COUNT(*) FROM books WHERE status = ?";
         Long result = jdbcTemplate.queryForObject(sql, Long.class, status);
         return result != null ? result : 0;
+    }
+
+    private QueryParts buildFilterQuery(String search, String status, String language, Integer typeId) {
+        List<String> conditions = new ArrayList<>();
+        List<Object> parameters = new ArrayList<>();
+
+        if (search != null && !search.trim().isEmpty()) {
+            String searchPattern = "%" + search.trim().toLowerCase() + "%";
+            conditions.add("(LOWER(title) LIKE ? OR LOWER(author) LIKE ? OR LOWER(isbn) LIKE ?)");
+            parameters.add(searchPattern);
+            parameters.add(searchPattern);
+            parameters.add(searchPattern);
+        }
+        if (status != null && !status.trim().isEmpty()) {
+            conditions.add("LOWER(status) = ?");
+            parameters.add(status.trim().toLowerCase());
+        }
+        if (language != null && !language.trim().isEmpty()) {
+            conditions.add("LOWER(language) = ?");
+            parameters.add(language.trim().toLowerCase());
+        }
+        if (typeId != null) {
+            conditions.add("type_id = ?");
+            parameters.add(typeId);
+        }
+
+        String whereClause = conditions.isEmpty() ? "" : " WHERE " + String.join(" AND ", conditions);
+        return new QueryParts(whereClause, parameters);
+    }
+
+    private record QueryParts(String whereClause, List<Object> parameters) {
     }
 }
