@@ -4,22 +4,33 @@ import { FilterComponent } from '../components/inventory/FilterComponent'
 import { InventoryTable } from '../components/inventory/InventoryTable'
 import { StatCards } from '../components/inventory/StatCards'
 import './inventory.css'
-import { fetchAllBooks } from '../services/bookService'
+import { filterBooks } from '../services/bookService'
 
 export function Inventory() {
     const [books, setBooks] = useState([])
+    const [page, setPage] = useState(1)
+    const [limit] = useState(5)
+    const [total, setTotal] = useState(0)
+    const [totalPages, setTotalPages] = useState(1)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         async function loadBooks() {
-
-            const data = await fetchAllBooks();
-
-            setBooks(data)
-            console.log(data)
+            setLoading(true)
+            try {
+                const response = await filterBooks({ page, limit })
+                setBooks(response.data || [])
+                setTotal(response.total || 0)
+                setTotalPages(response.totalPages || 1)
+            } catch (error) {
+                console.error("Failed to load books:", error)
+            } finally {
+                setLoading(false)
+            }
         }
 
         loadBooks()
-    }, [])
+    }, [page, limit])
 
     return (
         <>
@@ -31,8 +42,14 @@ export function Inventory() {
             <StatCards />
             <FilterComponent />
             <AddBook />
-            <InventoryTable books={books} />
-
+            <InventoryTable
+                books={books}
+                page={page}
+                limit={limit}
+                total={total}
+                totalPages={totalPages}
+                onPageChange={(newPage) => setPage(newPage)}
+            />
         </>
     )
 }
