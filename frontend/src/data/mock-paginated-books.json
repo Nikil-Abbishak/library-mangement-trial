@@ -1,0 +1,49 @@
+{
+  "page": 1,
+  "limit": 4,
+  "total": 10,
+  "totalPages": 3,
+  "hasMore": true,
+  "data": [
+    {
+      "book_id": 1,
+      "isbn": "9780132350884",
+      "title": "Clean Code",
+      "author": "Robert C. Martin",
+      "type_id": 1,
+      "status": "Available",
+      "language": "English",
+      "cover_image_url": "https://jwqvgftxfgkgfexaazjx.supabase.co/storage/v1/object/sign/images/book-cover-1.jpg?token=eyJraWQiOiI0Zjk2MWNmMC05M2I4LTRiMmUtYjEwOS01NWJkODBmZjBlMWEiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJpbWFnZXMvYm9vay1jb3Zlci0xLmpwZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3OTM3NzI2MDksImV4cCI6MTc5NjM2NDYwOX0.-NFZvi_MI4cKz6-Z8_-dKn9WhzP-Vw6bxzpgJCIVlaNelVa7xNOUxr5nAN-AgQ3U-o8eM882YoD_UAhFIDF0Yg"
+    },
+    {
+      "book_id": 2,
+      "isbn": "9781491950357",
+      "title": "Designing Data-Intensive Applications",
+      "author": "Martin Kleppmann",
+      "type_id": 1,
+      "status": "Borrowed",
+      "language": "English",
+      "cover_image_url": "https://jwqvgftxfgkgfexaazjx.supabase.co/storage/v1/object/sign/images/book-cover-2.jpg?token=eyJraWQiOiI0Zjk2MWNmMC05M2I4LTRiMmUtYjEwOS01NWJkODBmZjBlMWEiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJpbWFnZXMvYm9vay1jb3Zlci0yLmpwZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3OTM3NzI2NjQsImV4cCI6MTc5NjM2NDY2NH0.zDG5KAAa5TdvUbEmfrxE6hU_E5uVRfBNocXuWyw5QHrx-WwTjqUZ9anHXyzkfPCuwtiNO6j5HK5C4m289MUqUw"
+    },
+    {
+      "book_id": 3,
+      "isbn": "9780061120084",
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "type_id": 2,
+      "status": "Available",
+      "language": "English",
+      "cover_image_url": "https://jwqvgftxfgkgfexaazjx.supabase.co/storage/v1/object/sign/images/book-cover-3.jpg?token=eyJraWQiOiI0Zjk2MWNmMC05M2I4LTRiMmUtYjEwOS01NWJkODBmZjBlMWEiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJpbWFnZXMvYm9vay1jb3Zlci0zLmpwZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3OTM3ODQ2MDMsImV4cCI6MTc5NjM3NjYwM30.gp3zJwGX8qNyhZRpiOl9Bs8VsWh0tD5FQ0sb0-igwsf950NLEATA_HbD4uIO5h72rkM463-BfKo5OhuG8LuYwg"
+    },
+    {
+      "book_id": 4,
+      "isbn": "9780743273565",
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "type_id": 2,
+      "status": "Available",
+      "language": "English",
+      "cover_image_url": "https://jwqvgftxfgkgfexaazjx.supabase.co/storage/v1/object/sign/images/book-cover-4.jpg?token=eyJraWQiOiI0Zjk2MWNmMC05M2I4LTRiMmUtYjEwOS01NWJkODBmZjBlMWEiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJpbWFnZXMvYm9vay1jb3Zlci00LmpwZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3OTM3ODQ2NjYsImV4cCI6MTc5NjM3NjY2Nn0.HWIJqTZtxChD5hOAQalAGNcfOEuBe0VoBeA422qtN4di4WjJcLLEPC1qRDI_LGqdtsSDyIrXQMVcnUj6PhxWyA"
+    }
+  ]
+}
