@@ -32,10 +32,10 @@ export function BookComponent({ books, appliedSearch, filterBy }) {
                         {appliedSearch && filterBy
                             ? `We couldn't find any "${filterBy}" titles matching "${appliedSearch}".`
                             : appliedSearch
-                            ? `We couldn't find any titles matching "${appliedSearch}". Try searching a different name.`
-                            : filterBy
-                            ? `No books found for language "${filterBy}".`
-                            : `There are currently no books available in the collection.`}
+                                ? `We couldn't find any titles matching "${appliedSearch}". Try searching a different name.`
+                                : filterBy
+                                    ? `No books found for language "${filterBy}".`
+                                    : `There are currently no books available in the collection.`}
                     </p>
                 </div>
             )}

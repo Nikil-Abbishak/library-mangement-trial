@@ -58,13 +58,13 @@ export function InventoryTable({ books }) {
             </table>
 
             {/* Pagination Controls */}
-            {/* <div className="pagination">
+            <div className="pagination">
                 <span className="pagination-info">Showing 1 to 5 of 1,248 entries</span>
                 <div className="pagination-controls">
                     <button className="pagination-btn" disabled>&larr; Previous</button>
                     <button className="pagination-btn">Next &rarr;</button>
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }
