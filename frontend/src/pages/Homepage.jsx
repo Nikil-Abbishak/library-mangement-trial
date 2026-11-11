@@ -56,7 +56,7 @@ export function Homepage() {
             console.log('inner width', width)
 
             if (width < 640) {
-                setLimit(5)
+                setLimit(6)
             } else if (width < 1024) {
                 setLimit(10)
             } else {
@@ -66,7 +66,7 @@ export function Homepage() {
         // initially update the limit calling based on the screen size
         updateLimitOnSize()
 
-        window.addEventListener('rezise', updateLimitOnSize)
+        window.addEventListener('resize', updateLimitOnSize)
 
         // clean up function
         return () => {
