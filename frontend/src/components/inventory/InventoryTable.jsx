@@ -10,6 +10,7 @@ export function InventoryTable({
     totalPages = 1,
     onPageChange
 }) {
+
     const startIndex = total === 0 ? 0 : (page - 1) * limit + 1
     const endIndex = Math.min(page * limit, total)
 

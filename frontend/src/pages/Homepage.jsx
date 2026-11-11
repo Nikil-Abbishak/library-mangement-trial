@@ -30,7 +30,6 @@ export function Homepage() {
             let innerHeight = window.innerHeight
             let scrollHeight = document.documentElement.scrollHeight
             let scrollTop = document.documentElement.scrollTop
-
             // console.log(innerHeight, scrollHeight, scrollTop)
             if (innerHeight + scrollTop + 1 >= scrollHeight) {
                 setPageNumber(prev => prev >= totalPages && totalPages > 0 ? prev : prev + 1)
