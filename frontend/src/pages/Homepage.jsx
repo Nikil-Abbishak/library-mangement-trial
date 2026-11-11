@@ -18,6 +18,8 @@ export function Homepage() {
     const [filterBy, setFilterBy] = useState('')
     // check for more pages
     const [totalPages, setTotalPages] = useState(0)
+    // track the limit calling per screen size
+    const [limit, setLimit] = useState(0)
     // Loading state
     const [isLoading, setIsLoading] = useState(true)
 
@@ -38,10 +40,39 @@ export function Homepage() {
         }
 
         document.addEventListener('scroll', handleScroll)
+
+        //clean up function
         return () => {
             document.removeEventListener('scroll', handleScroll)
         }
     }, [totalPages])
+
+    // set the limit per screen based on the screen size
+    useEffect(() => {
+
+        function updateLimitOnSize() {
+            // capture the widow's width
+            const width = window.innerWidth
+            console.log('inner width', width)
+
+            if (width < 640) {
+                setLimit(5)
+            } else if (width < 1024) {
+                setLimit(10)
+            } else {
+                setLimit(12)
+            }
+        }
+        // initially update the limit calling based on the screen size
+        updateLimitOnSize()
+
+        window.addEventListener('rezise', updateLimitOnSize)
+
+        // clean up function
+        return () => {
+            window.removeEventListener('resize', updateLimitOnSize)
+        }
+    }, [])
 
     //runs on mount and whenever search or filter changes
     useEffect(() => {
@@ -54,7 +85,7 @@ export function Homepage() {
                     search: appliedSearch,
                     language: filterBy,
                     page: pageNumber,
-                    limit: 7
+                    limit: limit
                 })
                 if (isMounted) {
                     setBooks(prev => pageNumber === 1 ? data.data : [...prev, ...data.data])
@@ -74,7 +105,7 @@ export function Homepage() {
         return () => {
             isMounted = false
         }
-    }, [appliedSearch, filterBy, pageNumber])
+    }, [appliedSearch, filterBy, pageNumber, limit])
 
     return (
         <div className="homepage-container">
