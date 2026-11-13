@@ -3,17 +3,24 @@ import { AddBook } from '../components/inventory/AddBook'
 import { FilterComponent } from '../components/inventory/FilterComponent'
 import { InventoryTable } from '../components/inventory/InventoryTable'
 import { StatCards } from '../components/inventory/StatCards'
-import './inventory.css'
 import { filterBooks } from '../services/bookService'
+import './inventory.css'
 
 export function Inventory() {
+    // fetch book list
     const [books, setBooks] = useState([])
+    // track the page number of the list
     const [page, setPage] = useState(1)
+    // track the loading object limit
     const [limit] = useState(5)
+    // total books count
     const [total, setTotal] = useState(0)
+    // total pages count
     const [totalPages, setTotalPages] = useState(1)
+
     const [loading, setLoading] = useState(false)
 
+    // fetch all books with limitation and the page number
     useEffect(() => {
         async function loadBooks() {
             setLoading(true)
