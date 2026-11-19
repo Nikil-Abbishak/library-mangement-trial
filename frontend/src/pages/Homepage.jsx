@@ -107,15 +107,6 @@ export function Homepage() {
         }
     }, [appliedSearch, filterBy, pageNumber, limit])
 
-    function sayHello() {
-        const number = 10
-
-
-        console.log(number);
-
-        console.log('hello')
-    }
-
     return (
         <div className="homepage-container">
             <header className="page-header">
