@@ -2,7 +2,6 @@ package com.library.management.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-// Plain Java class - no JPA/Hibernate annotations needed with JDBC Template
 public class Book {
 
     @JsonProperty("book_id")

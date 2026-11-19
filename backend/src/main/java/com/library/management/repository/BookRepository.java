@@ -1,12 +1,13 @@
 package com.library.management.repository;
 
-import com.library.management.model.Book;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.library.management.model.Book;
 
 @Repository
 public class BookRepository {
@@ -31,7 +32,7 @@ public class BookRepository {
         return book;
     };
 
-    // Get one ordered page of books matching the active filters.
+    // Get one ordered page of books matching limits the active filters.
     public List<Book> findPage(String search, String status, String language, Integer typeId,
             int limit, long offset) {
         QueryParts queryParts = buildFilterQuery(search, status, language, typeId);

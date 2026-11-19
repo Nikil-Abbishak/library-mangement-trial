@@ -55,7 +55,7 @@ export function Homepage() {
             const width = window.innerWidth
             console.log('inner width', width)
 
-            if (width < 640) {
+            if (width < 630) {
                 setLimit(6)
             } else if (width < 1024) {
                 setLimit(10)
