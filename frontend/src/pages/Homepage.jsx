@@ -55,7 +55,7 @@ export function Homepage() {
             const width = window.innerWidth
             console.log('inner width', width)
 
-            if (width < 630) {
+            if (width < 640) {
                 setLimit(6)
             } else if (width < 1024) {
                 setLimit(10)
@@ -106,6 +106,15 @@ export function Homepage() {
             isMounted = false
         }
     }, [appliedSearch, filterBy, pageNumber, limit])
+
+    function sayHello() {
+        const number = 10
+
+
+        console.log(number);
+
+        console.log('hello')
+    }
 
     return (
         <div className="homepage-container">
